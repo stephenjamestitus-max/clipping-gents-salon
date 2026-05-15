@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Star, Award, Clock } from "lucide-react";
 import SectionReveal from "@/components/SectionReveal";
 import GoldDivider from "@/components/GoldDivider";
@@ -20,6 +21,7 @@ const team = [
       "Expert in hot straight-razor shaves",
       "Fluent in Arabic, Urdu & English",
     ],
+    img: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80",
   },
   {
     name: "Muhamad",
@@ -35,6 +37,7 @@ const team = [
       "Specialist in straight shaves",
       "Patient with first-time clients and children",
     ],
+    img: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=800&q=80",
   },
   {
     name: "Mazhar Iqbal",
@@ -50,24 +53,38 @@ const team = [
       "Trained in hair straightening techniques",
       "Detail-oriented finishing & aftercare",
     ],
+    img: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
 export default function TeamClient() {
   return (
-    <div className="bg-[#0F0F0F] min-h-screen pt-28 pb-24 px-6">
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <SectionReveal className="text-center mb-16">
+    <div className="bg-[#0F0F0F] min-h-screen pb-24">
+      {/* Hero banner */}
+      <div className="relative h-64 md:h-80 overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80"
+          alt="Salon interior"
+          fill
+          priority
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/60 via-[#0F0F0F]/50 to-[#0F0F0F]" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center pt-16 text-center px-6">
           <p className="text-[#C9A84C] text-sm font-semibold uppercase tracking-[0.25em] mb-3">
             The Talent
           </p>
           <h1
-            className="text-5xl md:text-6xl font-bold text-[#F5ECD7] mb-4"
+            className="text-5xl md:text-6xl font-bold text-[#F5ECD7]"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Our Team
           </h1>
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 pt-6">
+        <SectionReveal className="text-center mb-14">
           <GoldDivider />
           <p className="text-[#888] max-w-lg mx-auto mt-3 text-lg">
             Three specialists. Thousands of satisfied clients. One shared standard of excellence.
@@ -80,53 +97,67 @@ export default function TeamClient() {
             <SectionReveal key={member.name} delay={i * 0.1}>
               <motion.div
                 whileHover={{ borderColor: "rgba(201,168,76,0.4)" }}
-                className="bg-[#1A1A1A] border border-[#C9A84C]/15 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row gap-8"
+                className="bg-[#1A1A1A] border border-[#C9A84C]/15 rounded-3xl overflow-hidden flex flex-col md:flex-row"
               >
-                {/* Avatar column */}
-                <div className="flex flex-col items-center md:items-start gap-4 md:w-48 shrink-0">
-                  <div className="relative w-28 h-28 rounded-full bg-[#C9A84C]/10 border-2 border-[#C9A84C]/40 flex items-center justify-center">
+                {/* Image panel */}
+                <div className="relative md:w-64 h-56 md:h-auto shrink-0 overflow-hidden">
+                  <Image
+                    src={member.img}
+                    alt={`${member.name} — ${member.role}`}
+                    fill
+                    className="object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#1A1A1A]/60 hidden md:block" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/80 to-transparent md:hidden" />
+
+                  {/* Initials badge */}
+                  <div className="absolute bottom-4 left-4 md:hidden">
                     <span
-                      className="text-3xl font-bold text-[#C9A84C]"
+                      className="text-3xl font-bold text-[#C9A84C] drop-shadow-lg"
                       style={{ fontFamily: "var(--font-playfair)" }}
                     >
                       {member.initials}
                     </span>
-                    {member.tag && (
-                      <span className="absolute -top-2 -right-2 bg-[#C9A84C] text-[#0F0F0F] text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
-                        {member.tag}
-                      </span>
-                    )}
                   </div>
 
-                  <div className="text-center md:text-left">
-                    <div className="flex items-center gap-1.5 text-[#888] text-xs mb-1">
-                      <Clock size={12} className="text-[#C9A84C]" />
-                      {member.experience}
-                    </div>
-                    <div className="flex items-center gap-1.5 text-[#888] text-xs">
-                      <Award size={12} className="text-[#C9A84C]" />
-                      Expert Certified
-                    </div>
-                  </div>
+                  {member.tag && (
+                    <span className="absolute top-4 left-4 bg-[#C9A84C] text-[#0F0F0F] text-[10px] font-bold px-2.5 py-1 rounded-full">
+                      {member.tag}
+                    </span>
+                  )}
                 </div>
 
                 {/* Content */}
-                <div className="flex-1">
-                  <h2
-                    className="text-[#F5ECD7] text-2xl md:text-3xl font-bold mb-1"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
-                    {member.name}
-                  </h2>
-                  <p className="text-[#C9A84C] text-sm font-medium mb-1">{member.role}</p>
-                  <p className="text-[#555] text-xs mb-5 uppercase tracking-widest">{member.specialty}</p>
+                <div className="flex-1 p-8 md:p-10">
+                  <div className="flex items-start justify-between flex-wrap gap-3 mb-4">
+                    <div>
+                      <h2
+                        className="text-[#F5ECD7] text-2xl md:text-3xl font-bold mb-1"
+                        style={{ fontFamily: "var(--font-playfair)" }}
+                      >
+                        {member.name}
+                      </h2>
+                      <p className="text-[#C9A84C] text-sm font-medium">{member.role}</p>
+                      <p className="text-[#555] text-xs mt-1 uppercase tracking-widest">{member.specialty}</p>
+                    </div>
+                    <div className="flex flex-col gap-1.5 items-end">
+                      <div className="flex items-center gap-1.5 text-[#888] text-xs">
+                        <Clock size={11} className="text-[#C9A84C]" />
+                        {member.experience}
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[#888] text-xs">
+                        <Award size={11} className="text-[#C9A84C]" />
+                        Expert Certified
+                      </div>
+                    </div>
+                  </div>
 
                   <p className="text-[#888] leading-relaxed mb-6 text-sm md:text-base">{member.bio}</p>
 
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {member.highlights.map((h, j) => (
                       <li key={j} className="flex items-start gap-2 text-sm text-[#888]">
-                        <Star size={12} className="text-[#C9A84C] mt-1 shrink-0 fill-[#C9A84C]" />
+                        <Star size={11} className="text-[#C9A84C] mt-1 shrink-0 fill-[#C9A84C]" />
                         {h}
                       </li>
                     ))}

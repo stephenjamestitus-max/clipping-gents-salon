@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Star, Quote } from "lucide-react";
 import SectionReveal from "@/components/SectionReveal";
 import GoldDivider from "@/components/GoldDivider";
@@ -64,19 +65,32 @@ const reviews = [
 
 export default function ReviewsClient() {
   return (
-    <div className="bg-[#0F0F0F] min-h-screen pt-28 pb-24 px-6">
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <SectionReveal className="text-center mb-16">
+    <div className="bg-[#0F0F0F] min-h-screen pb-24">
+      {/* Hero banner */}
+      <div className="relative h-64 md:h-80 overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1920&q=80"
+          alt="Barbershop interior"
+          fill
+          priority
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/65 via-[#0F0F0F]/55 to-[#0F0F0F]" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center pt-16 text-center px-6">
           <p className="text-[#C9A84C] text-sm font-semibold uppercase tracking-[0.25em] mb-3">
             Client Stories
           </p>
           <h1
-            className="text-5xl md:text-6xl font-bold text-[#F5ECD7] mb-4"
+            className="text-5xl md:text-6xl font-bold text-[#F5ECD7]"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Reviews
           </h1>
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 pt-6">
+        <SectionReveal className="text-center mb-14">
           <GoldDivider />
           <div className="flex items-center justify-center gap-3 mt-4">
             <div className="flex gap-1">
@@ -98,22 +112,18 @@ export default function ReviewsClient() {
                 transition={{ duration: 0.2 }}
                 className="bg-[#1A1A1A] border border-[#C9A84C]/15 rounded-2xl p-7 flex flex-col h-full transition-all duration-300"
               >
-                {/* Quote icon */}
                 <Quote size={28} className="text-[#C9A84C]/30 mb-4" />
 
-                {/* Highlight tag */}
                 <span className="text-[#C9A84C] text-xs font-semibold uppercase tracking-wider mb-3">
                   {review.highlight}
                 </span>
 
-                {/* Stars */}
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: review.rating }).map((_, j) => (
                     <Star key={j} size={14} className="text-[#C9A84C] fill-[#C9A84C]" />
                   ))}
                 </div>
 
-                {/* Review text */}
                 <blockquote
                   className="text-[#F5ECD7]/85 text-sm md:text-base leading-relaxed italic flex-1 mb-6"
                   style={{ fontFamily: "var(--font-playfair)" }}
@@ -121,7 +131,6 @@ export default function ReviewsClient() {
                   &ldquo;{review.review}&rdquo;
                 </blockquote>
 
-                {/* Author */}
                 <div className="border-t border-[#C9A84C]/10 pt-5 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-[#C9A84C]/15 border border-[#C9A84C]/30 flex items-center justify-center text-[#C9A84C] text-sm font-bold">

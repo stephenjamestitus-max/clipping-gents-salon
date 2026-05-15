@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Scissors,
   Zap,
@@ -20,24 +21,28 @@ const heroWords = ["Sharp", "Cuts.", "Clean", "Fades.", "Sharjah's", "Finest."];
 
 const services = [
   {
-    icon: <Scissors size={28} />,
+    icon: <Scissors size={22} />,
     title: "Precision Haircuts",
     desc: "Classic, modern, and fade cuts tailored to your face shape and style.",
+    img: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80",
   },
   {
-    icon: <Zap size={28} />,
+    icon: <Zap size={22} />,
     title: "Beard Styling",
     desc: "Shape, trim, and sculpt your beard with expert care and hot towel finish.",
+    img: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=600&q=80",
   },
   {
-    icon: <Sparkles size={28} />,
+    icon: <Sparkles size={22} />,
     title: "Hot Shave",
     desc: "Traditional straight-razor shave with warm lather — the ultimate reset.",
+    img: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80",
   },
   {
-    icon: <Heart size={28} />,
+    icon: <Heart size={22} />,
     title: "Groom Packages",
     desc: "All-inclusive packages for weddings, events, and everyday excellence.",
+    img: "https://images.unsplash.com/photo-1570172619644-7a19c93ff8e8?auto=format&fit=crop&w=600&q=80",
   },
 ];
 
@@ -45,21 +50,25 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0F0F0F]">
-        {/* Background grid texture */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+        {/* Background photo */}
+        <Image
+          src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1920&q=80"
+          alt="Clipping Gents Salon interior"
+          fill
+          priority
+          className="object-cover object-center"
+        />
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/80 via-[#0F0F0F]/70 to-[#0F0F0F]" />
+        {/* Gold grid texture */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.025]"
           style={{
             backgroundImage:
               "linear-gradient(#C9A84C 1px, transparent 1px), linear-gradient(90deg, #C9A84C 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
-        />
-
-        {/* Gold radial glow */}
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, #C9A84C 0%, transparent 70%)" }}
         />
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
@@ -70,7 +79,7 @@ export default function HomePage() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="flex justify-center mb-8"
           >
-            <div className="w-20 h-20 rounded-full border border-[#C9A84C]/40 flex items-center justify-center bg-[#C9A84C]/10">
+            <div className="w-20 h-20 rounded-full border border-[#C9A84C]/50 flex items-center justify-center bg-[#C9A84C]/15 backdrop-blur-sm">
               <Scissors size={36} className="text-[#C9A84C]" />
             </div>
           </motion.div>
@@ -109,7 +118,7 @@ export default function HomePage() {
                     transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
                   },
                 }}
-                className="text-xl md:text-2xl text-[#888] font-light tracking-wide"
+                className="text-xl md:text-2xl text-[#F5ECD7]/60 font-light tracking-wide"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 {word}
@@ -129,7 +138,7 @@ export default function HomePage() {
                 <span key={i} className="text-[#C9A84C] text-sm">★</span>
               ))}
             </div>
-            <span className="text-[#888] text-sm">4.9 · 36 Google Reviews</span>
+            <span className="text-[#F5ECD7]/60 text-sm">4.9 · 36 Google Reviews</span>
           </motion.div>
 
           {/* CTAs */}
@@ -150,7 +159,7 @@ export default function HomePage() {
             </a>
             <Link
               href="/services"
-              className="flex items-center gap-2 border border-[#C9A84C]/50 text-[#C9A84C] font-semibold px-8 py-4 rounded-full text-base hover:bg-[#C9A84C]/10 transition-all duration-200"
+              className="flex items-center gap-2 border border-[#F5ECD7]/30 text-[#F5ECD7] font-semibold px-8 py-4 rounded-full text-base hover:bg-[#F5ECD7]/10 hover:border-[#C9A84C]/60 transition-all duration-200 backdrop-blur-sm"
             >
               View Services
             </Link>
@@ -164,7 +173,7 @@ export default function HomePage() {
           transition={{ delay: 2.5 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="text-[#555] text-xs tracking-widest uppercase">Scroll</span>
+          <span className="text-[#F5ECD7]/30 text-xs tracking-widest uppercase">Scroll</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
@@ -178,6 +187,25 @@ export default function HomePage() {
 
       {/* ── STATS ─────────────────────────────────────── */}
       <StatsBar />
+
+      {/* ── AMBIANCE STRIP ────────────────────────────── */}
+      <div className="grid grid-cols-3 h-52 md:h-72 overflow-hidden">
+        {[
+          { src: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=800&q=80", alt: "Barber at work" },
+          { src: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80", alt: "Haircut in progress" },
+          { src: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=80", alt: "Hot shave" },
+        ].map((img, i) => (
+          <div key={i} className="relative overflow-hidden group">
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-[#0F0F0F]/40 group-hover:bg-[#0F0F0F]/20 transition-colors duration-500" />
+          </div>
+        ))}
+      </div>
 
       {/* ── SERVICES PREVIEW ──────────────────────────── */}
       <section className="bg-[#0F0F0F] py-24 px-6">
@@ -202,20 +230,33 @@ export default function HomePage() {
             {services.map((svc, i) => (
               <SectionReveal key={svc.title} delay={i * 0.08}>
                 <motion.div
-                  whileHover={{ y: -6, scale: 1.02 }}
+                  whileHover={{ y: -6 }}
                   transition={{ duration: 0.25 }}
-                  className="bg-[#1A1A1A] border border-[#C9A84C]/15 rounded-2xl p-7 h-full group cursor-default gold-glow-hover transition-all duration-300"
+                  className="bg-[#1A1A1A] border border-[#C9A84C]/15 rounded-2xl overflow-hidden h-full group gold-glow-hover transition-all duration-300"
                 >
-                  <div className="text-[#C9A84C] mb-5 group-hover:scale-110 transition-transform duration-300">
-                    {svc.icon}
+                  {/* Card image */}
+                  <div className="relative h-44 overflow-hidden">
+                    <Image
+                      src={svc.img}
+                      alt={svc.title}
+                      fill
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-600"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/20 to-transparent" />
+                    <div className="absolute bottom-3 left-4 text-[#C9A84C] bg-[#0F0F0F]/60 backdrop-blur-sm rounded-lg p-1.5">
+                      {svc.icon}
+                    </div>
                   </div>
-                  <h3
-                    className="text-[#F5ECD7] font-bold text-lg mb-3"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
-                    {svc.title}
-                  </h3>
-                  <p className="text-[#888] text-sm leading-relaxed">{svc.desc}</p>
+                  {/* Card body */}
+                  <div className="p-6">
+                    <h3
+                      className="text-[#F5ECD7] font-bold text-lg mb-2"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      {svc.title}
+                    </h3>
+                    <p className="text-[#888] text-sm leading-relaxed">{svc.desc}</p>
+                  </div>
                 </motion.div>
               </SectionReveal>
             ))}
@@ -233,8 +274,17 @@ export default function HomePage() {
       </section>
 
       {/* ── TEAM TEASER ───────────────────────────────── */}
-      <section className="bg-[#1A1A1A] py-24 px-6 border-y border-[#C9A84C]/10">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative py-24 px-6 border-y border-[#C9A84C]/10 overflow-hidden">
+        {/* Background photo with strong overlay */}
+        <Image
+          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80"
+          alt="Salon interior"
+          fill
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#1A1A1A]/92" />
+
+        <div className="relative z-10 max-w-6xl mx-auto">
           <SectionReveal className="text-center mb-14">
             <p className="text-[#C9A84C] text-sm font-semibold uppercase tracking-[0.25em] mb-3">
               The Talent
@@ -334,10 +384,18 @@ export default function HomePage() {
       </section>
 
       {/* ── FINAL CTA ─────────────────────────────────── */}
-      <section className="bg-[#1A1A1A] py-24 px-6 border-t border-[#C9A84C]/10">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="relative py-28 px-6 overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1920&q=80"
+          alt="Barber at work"
+          fill
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#0F0F0F]/88" />
+
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
           <SectionReveal>
-            <div className="w-16 h-16 rounded-full bg-[#C9A84C]/10 border border-[#C9A84C]/30 flex items-center justify-center mx-auto mb-8">
+            <div className="w-16 h-16 rounded-full bg-[#C9A84C]/15 border border-[#C9A84C]/40 flex items-center justify-center mx-auto mb-8 backdrop-blur-sm">
               <Users size={28} className="text-[#C9A84C]" />
             </div>
             <h2
@@ -362,7 +420,7 @@ export default function HomePage() {
               </a>
               <Link
                 href="/contact"
-                className="flex items-center justify-center gap-2 border border-[#C9A84C]/50 text-[#C9A84C] font-semibold px-8 py-4 rounded-full hover:bg-[#C9A84C]/10 transition-colors"
+                className="flex items-center justify-center gap-2 border border-[#F5ECD7]/30 text-[#F5ECD7] font-semibold px-8 py-4 rounded-full hover:bg-[#F5ECD7]/10 hover:border-[#C9A84C]/50 transition-colors"
               >
                 Get Directions
               </Link>
