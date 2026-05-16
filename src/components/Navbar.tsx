@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Scissors } from "lucide-react";
 import clsx from "clsx";
+import { WA_URL, playfairStyle } from "@/lib/constants";
 
 const links = [
   { href: "/", label: "Home" },
@@ -48,7 +49,7 @@ export default function Navbar() {
           />
           <span
             className="font-serif text-xl font-bold tracking-wide"
-            style={{ fontFamily: "var(--font-playfair)" }}
+            style={playfairStyle}
           >
             <span className="text-[#C9A84C]">Clipping</span>
             <span className="text-[#F5ECD7]"> Gents</span>
@@ -82,7 +83,7 @@ export default function Navbar() {
 
         {/* CTA */}
         <a
-          href="https://wa.me/971507545032"
+          href={WA_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:inline-flex items-center gap-2 bg-[#C9A84C] text-[#0F0F0F] text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#E8C96A] transition-colors duration-200"
@@ -128,7 +129,7 @@ export default function Navbar() {
               ))}
               <li>
                 <a
-                  href="https://wa.me/971507545032"
+                  href={WA_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-center bg-[#C9A84C] text-[#0F0F0F] font-semibold px-5 py-3 rounded-full mt-2"

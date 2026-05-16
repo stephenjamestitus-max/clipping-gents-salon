@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import SectionReveal from "@/components/SectionReveal";
 import GoldDivider from "@/components/GoldDivider";
+import PageBanner from "@/components/PageBanner";
+import { WA_URL, playfairStyle } from "@/lib/constants";
 
 const services = [
   {
@@ -119,28 +121,12 @@ const services = [
 export default function ServicesClient() {
   return (
     <div className="bg-[#0F0F0F] min-h-screen pb-24">
-      {/* Hero banner */}
-      <div className="relative h-64 md:h-80 overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1920&q=80"
-          alt="Barber services"
-          fill
-          priority
-          className="object-cover object-[center_30%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/60 via-[#0F0F0F]/50 to-[#0F0F0F]" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center pt-16 text-center px-6">
-          <p className="text-[#C9A84C] text-sm font-semibold uppercase tracking-[0.25em] mb-3">
-            Our Menu
-          </p>
-          <h1
-            className="text-5xl md:text-6xl font-bold text-[#F5ECD7]"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            Services
-          </h1>
-        </div>
-      </div>
+      <PageBanner
+        src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1920&q=80"
+        alt="Barber services"
+        eyebrow="Our Menu"
+        title="Services"
+      />
 
       <div className="max-w-6xl mx-auto px-6 pt-6 pb-8">
         <SectionReveal className="text-center mb-14">
@@ -151,7 +137,6 @@ export default function ServicesClient() {
           </p>
         </SectionReveal>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((svc, i) => (
             <SectionReveal key={svc.name} delay={i * 0.04}>
@@ -160,7 +145,6 @@ export default function ServicesClient() {
                 transition={{ duration: 0.2 }}
                 className="relative bg-[#1A1A1A] border border-[#C9A84C]/15 rounded-2xl overflow-hidden h-full flex flex-col gold-glow-hover transition-all duration-300 group"
               >
-                {/* Image */}
                 <div className="relative h-44 overflow-hidden shrink-0">
                   <Image
                     src={svc.img}
@@ -169,35 +153,25 @@ export default function ServicesClient() {
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/10 to-transparent" />
-
-                  {/* Tag */}
                   {svc.tag && (
                     <span className="absolute top-3 right-3 bg-[#C9A84C] text-[#0F0F0F] text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
                       {svc.tag}
                     </span>
                   )}
-
-                  {/* Icon */}
                   <div className="absolute bottom-3 left-4 text-[#C9A84C] bg-[#0F0F0F]/60 backdrop-blur-sm rounded-lg p-1.5">
                     {svc.icon}
                   </div>
                 </div>
 
-                {/* Body */}
                 <div className="p-6 flex flex-col flex-1">
-                  <h2
-                    className="text-[#F5ECD7] font-bold text-xl mb-2"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
+                  <h2 className="text-[#F5ECD7] font-bold text-xl mb-2" style={playfairStyle}>
                     {svc.name}
                   </h2>
-                  <p className="text-[#888] text-sm leading-relaxed flex-1 mb-5">
-                    {svc.desc}
-                  </p>
+                  <p className="text-[#888] text-sm leading-relaxed flex-1 mb-5">{svc.desc}</p>
                   <div className="border-t border-[#C9A84C]/10 pt-4 flex items-center justify-between">
                     <span className="text-[#C9A84C] font-bold text-base">{svc.price}</span>
                     <a
-                      href="https://wa.me/971507545032"
+                      href={WA_URL}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs text-[#888] hover:text-[#C9A84C] transition-colors underline-offset-2 hover:underline"
@@ -211,13 +185,12 @@ export default function ServicesClient() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
         <SectionReveal className="text-center mt-16">
           <p className="text-[#888] mb-6 text-base">
             Not sure what you need? Message us and we&apos;ll recommend the right service.
           </p>
           <a
-            href="https://wa.me/971507545032"
+            href={WA_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#C9A84C] text-[#0F0F0F] font-bold px-8 py-4 rounded-full hover:bg-[#E8C96A] transition-colors gold-glow"

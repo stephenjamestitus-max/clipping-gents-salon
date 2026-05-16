@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { WA_URL } from "@/lib/constants";
 
 export default function WhatsAppButton() {
   return (
     <motion.a
-      href="https://wa.me/971507545032"
+      href={WA_URL}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

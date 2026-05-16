@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Star, Award, Clock } from "lucide-react";
 import SectionReveal from "@/components/SectionReveal";
 import GoldDivider from "@/components/GoldDivider";
+import PageBanner from "@/components/PageBanner";
+import { WA_URL, playfairStyle } from "@/lib/constants";
 
 const team = [
   {
@@ -60,28 +62,12 @@ const team = [
 export default function TeamClient() {
   return (
     <div className="bg-[#0F0F0F] min-h-screen pb-24">
-      {/* Hero banner */}
-      <div className="relative h-64 md:h-80 overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80"
-          alt="Salon interior"
-          fill
-          priority
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/60 via-[#0F0F0F]/50 to-[#0F0F0F]" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center pt-16 text-center px-6">
-          <p className="text-[#C9A84C] text-sm font-semibold uppercase tracking-[0.25em] mb-3">
-            The Talent
-          </p>
-          <h1
-            className="text-5xl md:text-6xl font-bold text-[#F5ECD7]"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            Our Team
-          </h1>
-        </div>
-      </div>
+      <PageBanner
+        src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80"
+        alt="Salon interior"
+        eyebrow="The Talent"
+        title="Our Team"
+      />
 
       <div className="max-w-5xl mx-auto px-6 pt-6">
         <SectionReveal className="text-center mb-14">
@@ -91,7 +77,6 @@ export default function TeamClient() {
           </p>
         </SectionReveal>
 
-        {/* Team cards */}
         <div className="flex flex-col gap-10">
           {team.map((member, i) => (
             <SectionReveal key={member.name} delay={i * 0.1}>
@@ -99,7 +84,6 @@ export default function TeamClient() {
                 whileHover={{ borderColor: "rgba(201,168,76,0.4)" }}
                 className="bg-[#1A1A1A] border border-[#C9A84C]/15 rounded-3xl overflow-hidden flex flex-col md:flex-row"
               >
-                {/* Image panel */}
                 <div className="relative md:w-64 h-56 md:h-auto shrink-0 overflow-hidden">
                   <Image
                     src={member.img}
@@ -109,17 +93,11 @@ export default function TeamClient() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#1A1A1A]/60 hidden md:block" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/80 to-transparent md:hidden" />
-
-                  {/* Initials badge */}
                   <div className="absolute bottom-4 left-4 md:hidden">
-                    <span
-                      className="text-3xl font-bold text-[#C9A84C] drop-shadow-lg"
-                      style={{ fontFamily: "var(--font-playfair)" }}
-                    >
+                    <span className="text-3xl font-bold text-[#C9A84C] drop-shadow-lg" style={playfairStyle}>
                       {member.initials}
                     </span>
                   </div>
-
                   {member.tag && (
                     <span className="absolute top-4 left-4 bg-[#C9A84C] text-[#0F0F0F] text-[10px] font-bold px-2.5 py-1 rounded-full">
                       {member.tag}
@@ -127,14 +105,10 @@ export default function TeamClient() {
                   )}
                 </div>
 
-                {/* Content */}
                 <div className="flex-1 p-8 md:p-10">
                   <div className="flex items-start justify-between flex-wrap gap-3 mb-4">
                     <div>
-                      <h2
-                        className="text-[#F5ECD7] text-2xl md:text-3xl font-bold mb-1"
-                        style={{ fontFamily: "var(--font-playfair)" }}
-                      >
+                      <h2 className="text-[#F5ECD7] text-2xl md:text-3xl font-bold mb-1" style={playfairStyle}>
                         {member.name}
                       </h2>
                       <p className="text-[#C9A84C] text-sm font-medium">{member.role}</p>
@@ -168,11 +142,10 @@ export default function TeamClient() {
           ))}
         </div>
 
-        {/* CTA */}
         <SectionReveal className="text-center mt-16">
           <p className="text-[#888] mb-6">Request a specific stylist when you book.</p>
           <a
-            href="https://wa.me/971507545032"
+            href={WA_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#C9A84C] text-[#0F0F0F] font-bold px-8 py-4 rounded-full hover:bg-[#E8C96A] transition-colors gold-glow"

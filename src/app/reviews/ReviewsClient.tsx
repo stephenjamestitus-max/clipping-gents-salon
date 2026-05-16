@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { Star, Quote } from "lucide-react";
 import SectionReveal from "@/components/SectionReveal";
 import GoldDivider from "@/components/GoldDivider";
+import PageBanner from "@/components/PageBanner";
+import { WA_URL, playfairStyle } from "@/lib/constants";
 
 const reviews = [
   {
@@ -39,7 +40,7 @@ const reviews = [
     avatar: "NR",
     rating: 5,
     highlight: "Skillful & Affordable",
-    stylist: "General",
+    stylist: null,
     review:
       "Nice attitude, good communication, skillful stylist. Very reasonable and affordable prices. One of the best salons in Sharjah without a doubt. The staff are friendly and attentive. I never feel rushed or overlooked — every visit feels premium even at the price point they offer.",
   },
@@ -57,7 +58,7 @@ const reviews = [
     avatar: "BB",
     rating: 5,
     highlight: "Every Minute Detail Taken Care Of",
-    stylist: "General",
+    stylist: null,
     review:
       "Perfect in handling all grooming needs. Every minute detail taken care of. You feel like royalty walking out of that chair. The attention to finishing touches — the razor line, the neck trim, the cleanup — is what separates this salon from the rest. Worth every dirham.",
   },
@@ -66,28 +67,12 @@ const reviews = [
 export default function ReviewsClient() {
   return (
     <div className="bg-[#0F0F0F] min-h-screen pb-24">
-      {/* Hero banner */}
-      <div className="relative h-64 md:h-80 overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1920&q=80"
-          alt="Barbershop interior"
-          fill
-          priority
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/65 via-[#0F0F0F]/55 to-[#0F0F0F]" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center pt-16 text-center px-6">
-          <p className="text-[#C9A84C] text-sm font-semibold uppercase tracking-[0.25em] mb-3">
-            Client Stories
-          </p>
-          <h1
-            className="text-5xl md:text-6xl font-bold text-[#F5ECD7]"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            Reviews
-          </h1>
-        </div>
-      </div>
+      <PageBanner
+        src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1920&q=80"
+        alt="Barbershop interior"
+        eyebrow="Client Stories"
+        title="Reviews"
+      />
 
       <div className="max-w-5xl mx-auto px-6 pt-6">
         <SectionReveal className="text-center mb-14">
@@ -103,7 +88,6 @@ export default function ReviewsClient() {
           </div>
         </SectionReveal>
 
-        {/* Review cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {reviews.map((review, i) => (
             <SectionReveal key={review.name} delay={i * 0.07}>
@@ -126,7 +110,7 @@ export default function ReviewsClient() {
 
                 <blockquote
                   className="text-[#F5ECD7]/85 text-sm md:text-base leading-relaxed italic flex-1 mb-6"
-                  style={{ fontFamily: "var(--font-playfair)" }}
+                  style={playfairStyle}
                 >
                   &ldquo;{review.review}&rdquo;
                 </blockquote>
@@ -141,7 +125,7 @@ export default function ReviewsClient() {
                       <div className="text-[#555] text-xs">Verified Google Review</div>
                     </div>
                   </div>
-                  {review.stylist !== "General" && (
+                  {review.stylist && (
                     <span className="text-[#555] text-xs">
                       Stylist: <span className="text-[#888]">{review.stylist}</span>
                     </span>
@@ -152,14 +136,13 @@ export default function ReviewsClient() {
           ))}
         </div>
 
-        {/* CTA */}
         <SectionReveal className="text-center mt-16">
           <p className="text-[#888] mb-2 text-base">Loved your experience?</p>
           <p className="text-[#555] text-sm mb-8">
             Leave us a Google review — it helps the team and the community.
           </p>
           <a
-            href="https://wa.me/971507545032"
+            href={WA_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#C9A84C] text-[#0F0F0F] font-bold px-8 py-4 rounded-full hover:bg-[#E8C96A] transition-colors gold-glow"
